@@ -1,6 +1,6 @@
 # AnonyQs SlackBot
 
-AnonyQs is a slackbot that allows users to send questions to a slack channel anonymously. Users no longer need to be unsure whether to ask a quesion or not because they fear it may be seen as a "stupid question". AnonyQs will post their question in to the desired channel on the user's behalf and no other member will know who it has come from. 
+AnonyQs is a slackbot that allows users to send questions to a slack channel anonymously. Users no longer need to be unsure whether or not to ask a quesion because they fear it may be seen as a "stupid question". AnonyQs will post their question in to the desired channel on the user's behalf and no other member will know who it has come from. 
 
 ## Tools
 
