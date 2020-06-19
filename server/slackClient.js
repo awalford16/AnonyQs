@@ -9,32 +9,31 @@ function handleOnAuthenticated(rtmStartData) {
 async function handleOnMessage(message) {
     console.log(message);
 
-    const code = "<#[A-Z0-9]+";
-    const name = "[a-z]+-?[a-z]+>";
-    let channelCode = message.text.match(code);
-    let channelName = message.text.match(name);
+    const code = /<#[A-Z0-9]+/g;
+    const name = /[a-z]+-?[a-z]+>/g;
+    let channelCodes = message.text.match(code);
+    let channelNames = message.text.match(name);
 
-    if (channelName == null || channelCode == null) {
+    if (channelNames == null || channelCodes == null || channelNames == [] || channelCodes == []) {
         // failure to find channel
         await rtm.sendMessage('Please send private messages in the format: "#channel question"', message.channel);
     }
 
     try{
-        channelCode = channelCode[0].substr(2, channelCode[0].length - 1);
-        channelName = channelName[0].substr(0, channelName[0].length - 1);
-        console.log(channelCode);    
-        console.log(channelName);
-        
-        const question = message.text.split('> ')[1];
+        let channelLength = channelNames.length;
+        const question = message.text.split('> ')[channelLength];
 
-        console.log(`Messaging channel: #${channelName}.`);
+        // Fix channel names
+        for(var i = 0; i < channelLength; i++) {
+            channelCodes[i] = channelCodes[i].substr(2, channelCodes[i].length - 1);
+            channelNames[i] = channelNames[i].substr(0, channelNames[i].length - 1);
 
-        await rtm.sendMessage(`Sending "${question}" to #${channelName}.`, message.channel);
-
-        await rtm.sendMessage(question, channelCode);
+            await rtm.sendMessage(`Sending "${question}" to channel: ${channelNames[i]}`, message.channel);
+            await rtm.sendMessage(question, channelCodes[i]);
+        }
     } catch (ex) {
         console.error(ex.message);
-        await rtm.sendMessage(`Failed to send message. Please ensure you have provided the correct channel name and that AnonyQs has been added to the channel first.`, message.channel);
+        await rtm.sendMessage(`Failed to send message. Please ensure you have provided the correct channel names and that AnonyQs has been added to the channels first.`, message.channel);
     }
 }
 

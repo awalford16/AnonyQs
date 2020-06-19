@@ -2,6 +2,11 @@
 
 AnonyQs is a slackbot that allows users to send questions to a slack channel anonymously. Users no longer need to be unsure whether or not to ask a quesion because they fear it may be seen as a "stupid question". AnonyQs will post their question in to the desired channel on the user's behalf and no other member will know who it has come from. 
 
+## Updates
+Date | Update
+--- | ---
+19/06/2020 | Send messages to multiple channels: List the channels followed by the message: `#channel1 #channel2 my message`
+
 ## Tools
 
 AnonyQs uses the Web-Socket based [Real Time Messaging API](https://api.slack.com/rtm) to validate user authentication and trigger events when a message is sent to the channel.
