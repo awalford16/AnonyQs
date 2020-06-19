@@ -1,13 +1,15 @@
 'use strict';
 
-const service = require('../server/service');
+const service = require('./server/service');
 const http = require('http');
 const config = require('config');
-const slackClient = require('../server/slackClient');
+const slackClient = require('./server/slackClient');
 const server = http.createServer(service);
 
 const slackToken = config.get('slackToken');
 const slackLogLevel = 'verbose';
+
+console.log(slackToken);
 
 // Begin authentication with slack client
 const rtm = slackClient.init(slackToken, slackLogLevel);

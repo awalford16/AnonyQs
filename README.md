@@ -8,7 +8,7 @@ AnonyQs uses the Web-Socket based [Real Time Messaging API](https://api.slack.co
 
 ## Setup
 
-To begin using AnonyQs, it first needs to be added as an app in a users slack evironment. Additionally, it needs to be added to the channels that users will ask questions in otherwise, the bot will not have the correct permissions to post to that channel. 
+To begin using AnonyQs, it first needs to be added as an app in a users slack evironment. Additionally, it needs to be added to the channels that users will ask questions in, otherwise the bot will not have the correct permissions to post to that channel. 
 
 ## Input
 
@@ -22,4 +22,4 @@ Post In | Question
 ---|---
 #my-channel | What day is it today?
 
-Anything prior to the channel name will be ignored.
+NOTE: Anything prior to the channel name will be ignored.
