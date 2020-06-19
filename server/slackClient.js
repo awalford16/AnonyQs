@@ -16,25 +16,25 @@ async function handleOnMessage(message) {
 
     if (channelName == null || channelCode == null) {
         // failure to find channel
-        await rtm.sendMessage('Could not locate the specific channel to post to. Please ensure it is spelt correctly.', message.channel);
+        await rtm.sendMessage('Please send private messages in the format: "#channel question"', message.channel);
     }
 
-    channelCode = channelCode[0].substr(2, channelCode[0].length - 1);
-    channelName = channelName[0].substr(0, channelName[0].length - 1);
-    console.log(channelCode);    
-    console.log(channelName);
-    
-    const question = message.text.split('> ')[1];
+    try{
+        channelCode = channelCode[0].substr(2, channelCode[0].length - 1);
+        channelName = channelName[0].substr(0, channelName[0].length - 1);
+        console.log(channelCode);    
+        console.log(channelName);
+        
+        const question = message.text.split('> ')[1];
 
-    console.log(`Messaging channel: #${channelName}.`);
+        console.log(`Messaging channel: #${channelName}.`);
 
-    await rtm.sendMessage(`Sending "${question}" to #${channelName}.`, message.channel);
+        await rtm.sendMessage(`Sending "${question}" to #${channelName}.`, message.channel);
 
-    try {
         await rtm.sendMessage(question, channelCode);
     } catch (ex) {
         console.error(ex.message);
-        await rtm.sendMessage(`Failed to send message to ${channelName}. Ensure that AnonyQs has been added to the channel first.`, message.channel);
+        await rtm.sendMessage(`Failed to send message. Please ensure you have provided the correct channel name and that AnonyQs has been added to the channel first.`, message.channel);
     }
 }
 
