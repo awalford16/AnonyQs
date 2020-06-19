@@ -9,8 +9,6 @@ const server = http.createServer(service);
 const slackToken = config.get('slackToken');
 const slackLogLevel = 'verbose';
 
-console.log(slackToken);
-
 // Begin authentication with slack client
 const rtm = slackClient.init(slackToken, slackLogLevel);
 rtm.start()
